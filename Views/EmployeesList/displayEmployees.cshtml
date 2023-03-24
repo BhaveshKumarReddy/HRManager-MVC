@@ -1,0 +1,61 @@
+﻿@model IEnumerable<HRM_Project.Models.EmployeesList>
+
+@{
+    ViewData["Title"] = "displayEmployees";
+}
+<style>
+    .tbody-table{
+    }
+    .tr-table:hover{
+        background-color: lightgray;
+    }
+</style>
+
+<div>
+    <a style="color:#ededed" asp-controller="Home" asp-action="Index">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+</div>
+<hr />
+
+<h4 style="color:#ededed">Employees in @ViewBag.location_name</h4>
+
+<div style="margin:25px 0px 0px 0px">
+    <a style="margin:3px;border:2px solid #ededed;padding:5px;border-radius:3px;color:dodgerblue" asp-action="add_Employee">+ Employee</a>
+</div>
+
+<table style="margin-top: 35px;background-color:#ededed;border-radius:7px;box-sizing:border-box;overflow:hidden" class="table">
+    <thead style="background-color:lightgray">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Role
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="tbody-table">
+        @foreach (var item in Model)
+        {
+            <tr class="tr-table" style="border-bottom: 2px solid black;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeRole)
+                </td>
+                <td>
+                    <a asp-action="open_Employee" asp-route-id="@item.EmployeeId"><span style="font-weight:bold">Open &#9432;</span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

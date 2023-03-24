@@ -1,0 +1,83 @@
+﻿@model HRM_Project.Models.EmployeesList
+
+@{
+    ViewData["Title"] = "add_Employee";
+}
+<style>
+
+    .main-add {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+    }
+
+    .box-add {
+        margin: 0px;
+        background-color: #ebebeb;
+        padding: 30px;
+        border-radius: 7px;
+    }
+</style>
+
+<div>
+    <a style="color:#ededed" asp-action="displayEmployees">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+</div>
+<h4 style="color:#ededed">Add an Employee</h4>
+<hr />
+<div style="margin-bottom:5%" class="row main-add">
+    <div class="col-md-4 box-add">
+        <form asp-action="add_Employee">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EmployeeName" class="control-label"></label>
+                <input asp-for="EmployeeName" class="form-control" />
+                <span asp-validation-for="EmployeeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeDoj" class="control-label"></label>
+                <input asp-for="EmployeeDoj" class="form-control" />
+                <span asp-validation-for="EmployeeDoj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeRole" class="control-label"></label>
+                <input asp-for="EmployeeRole" class="form-control" />
+                <span asp-validation-for="EmployeeRole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeSalary" class="control-label"></label>
+                <input asp-for="EmployeeSalary" class="form-control" />
+                <span asp-validation-for="EmployeeSalary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeePoints" class="control-label"></label>
+                <input asp-for="EmployeePoints" class="form-control" />
+                <span asp-validation-for="EmployeePoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeAppraisalDate" class="control-label"></label>
+                <input asp-for="EmployeeAppraisalDate" class="form-control" />
+                <span asp-validation-for="EmployeeAppraisalDate" class="text-danger"></span>
+            </div>
+            <div style="display:none" class="form-group">
+                <label asp-for="LocationId" class="control-label"></label>
+                <input value=@ViewBag.LocationId asp-for="LocationId" class="form-control" />
+                <span asp-validation-for="LocationId" class="text-danger"></span>
+            </div>
+            <div style="display:flex;justify-content:center" class="form-group">
+                <input type="submit" value="Add Employee" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="displayEmployees">< Back</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

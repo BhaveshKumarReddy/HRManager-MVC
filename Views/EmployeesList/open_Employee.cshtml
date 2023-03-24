@@ -1,0 +1,130 @@
+﻿@model HRM_Project.Models.EmployeesList
+
+@{
+    ViewData["Title"] = "open_Employee";
+}
+<style>
+    dt, dd{
+        margin-bottom: 10px;
+        padding:10px;
+    }
+    .li-tab-button{
+        border-radius:3px;
+        padding:10px;
+        margin:5px;
+    }
+    .txt-active {
+        background-color: deepskyblue;
+    }
+    .txt-active:hover {
+        background-color: cornflowerblue;
+    }
+    .txt-active-none-tab {
+        background-color: #ededed;
+        margin-right: 50px;
+    }
+    .txt-danger:hover{
+        background-color: firebrick;
+    }
+    .txt-danger {
+        background-color: red;
+    }
+    .li-tab-button a{
+        text-decoration:none;
+        color:white;
+        font-weight:bold;
+        margin:3px;
+    }
+    .li-tab-button a:focus{
+        padding-bottom:5px;
+        border-bottom: 3px solid white;
+    }
+</style>
+<div>
+    <a style="color:#ededed" asp-action="displayEmployees">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+    <hr />
+    <h4 style="color:#ededed">Employee Information - <span> ID: @Html.DisplayFor(model => model.EmployeeId)</span></h4>
+    <hr />
+    <dl class="row">
+        <dt style="color:#ededed" class="col-sm-2">
+            Name
+        </dt>
+        <dd style="background-color: #f5f5f5" class="col-sm-10">
+            @Html.DisplayFor(model => model.EmployeeName)
+        </dd>
+        <dt style="color:#ededed" class="col-sm-2">
+            Date Of Joining
+        </dt>
+        <dd style="background-color: #f5f5f5" class="col-sm-10">
+            @Html.DisplayFor(model => model.EmployeeDoj)
+        </dd>
+        <dt style="color:#ededed" class="col-sm-2">
+            Role
+        </dt>
+        <dd style="background-color: #f5f5f5" class="col-sm-10">
+            @Html.DisplayFor(model => model.EmployeeRole)
+        </dd>
+        <dt style="color:#ededed" class="col-sm-2">
+            Points
+        </dt>
+        <dd style="background-color: #f5f5f5;" class="col-sm-10">
+            @Html.DisplayFor(model => model.EmployeePoints)
+        </dd>
+        <dt style="color:#ededed" class="col-sm-2">
+            Salary in &#8377;
+        </dt>
+        <dd style="background-color: #f5f5f5" class="col-sm-10">
+            <div style="display:flex;justify-content:space-between;flex-direction:row;width:100%;align-items:center">
+                @Html.DisplayFor(model => model.EmployeeSalary)
+                @if (ViewBag.eligible)
+                {
+                    <span style="color: #525252; font-weight: bold; background-color: white; padding: 5px 10px 5px 10px; border-radius: 5px; border-style: solid; border-color: chartreuse">Eligible for Increment</span>
+                }
+            </div>
+        </dd>
+    </dl>
+</div>
+<hr />
+<div id="exTab1" class="container">
+    <ul style="margin-bottom:20px" class="nav nav-pills">
+        <li class="txt-active-none-tab li-tab-button">
+            <a style="color:black" href="#none" data-toggle="tab">Close Tab</a>
+        </li>
+        <li class="txt-active li-tab-button">
+            <a href="#Edit" data-toggle="tab">Edit Info &#9432;</a>
+        </li>
+        @if (ViewBag.eligible)
+        {
+            <li class="txt-active li-tab-button">
+                <a href="#Increment" data-toggle="tab" style="">Increment Salary</a>
+            </li>
+        }
+        <li class="txt-danger li-tab-button">
+            <a href="#Fire" data-toggle="tab">Fire Employee</a>
+        </li>
+        <li class="txt-danger li-tab-button">
+            <a href="#Transfer" data-toggle="tab">Transfer</a>
+        </li>
+    </ul>
+
+    <div style="margin-bottom:10%" class="tab-content clearfix">
+        <div class="tab-pane active" id="none"></div>
+        <div class="tab-pane" id="Edit">
+            <partial name="_Partial_EditDetails" model="Model" />
+        </div>
+        <div class="tab-pane" id="Fire">
+            <partial name="_Partial_FireEmployee" model="Model" />
+        </div>
+        <div class="tab-pane" id="Transfer">
+            <partial name="_Partial_Transfer" model="Model" />
+        </div>
+        <div class="tab-pane" id="Increment">
+            <partial name="_Partial_IncrementSalary" model="Model" />
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

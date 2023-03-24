@@ -1,0 +1,63 @@
+﻿@model HRM_Project.Models.HrList
+
+@{
+    ViewData["Title"] = "login_HR";
+}
+<style>
+    .main-login {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding:0px;
+    }
+    .box-login {
+        margin:0px;
+        background-color: #ebebeb;
+        padding: 30px;
+        border-radius: 7px;
+    }
+    .form-login{
+
+    }
+</style>
+
+<div>
+    <a style="color:#ededed" asp-controller="Home" asp-action="Index">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+</div>
+<hr />
+
+<h3 style="color:#ededed">Login</h3>
+
+<hr />
+
+<div class="row main-login">
+    <div class="col-md-4 box-login">
+        <form class="form-login" enctype="multipart/form-data" asp-action="login_HR">
+            <div class="form-group">
+                <input style="background-color:#ebebeb;border:none;border-bottom:2px solid black" placeholder="Email" type="email" name="HrEmail" class="form-control" required />
+                <span asp-validation-for="HrEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input style="background-color:#ebebeb;border:none;border-bottom:2px solid black" placeholder="Password" type="password" asp-for="HrPassword" class="form-control" />
+                <span asp-validation-for="HrPassword" class="text-danger"></span>
+            </div>
+            @{
+                if (ViewBag.error != null)
+                {
+                    <h4 class="text-danger">@ViewBag.error</h4>
+                }
+            }
+            <div style="display:flex;justify-content:center;" class="form-group">
+                <input type="submit" value="Login" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

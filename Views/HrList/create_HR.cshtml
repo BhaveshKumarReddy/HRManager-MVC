@@ -1,0 +1,71 @@
+﻿@model HRM_Project.Models.HrList
+
+@{
+    ViewData["Title"] = "create_HR";
+}
+<style>
+    .main-login {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+    }
+
+    .box-login {
+        margin: 0px;
+        background-color: #ebebeb;
+        padding: 30px;
+        border-radius: 7px;
+    }
+</style>
+
+
+<div>
+    <a style="color:#ededed" asp-controller="Home" asp-action="Index">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+</div>
+<hr />
+
+<h4 style="color:#ededed">Register</h4>
+
+<hr />
+<div class="row main-login">
+    <div class="col-md-4 box-login">
+        <form asp-action="create_HR">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input placeholder="Name" style="background-color:#ebebeb;border:none;border-bottom:2px solid black" asp-for="HrName" class="form-control" />
+                <span asp-validation-for="HrName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input placeholder="Email" style="background-color:#ebebeb;border:none;border-bottom:2px solid black" type="email" asp-for="HrEmail" class="form-control" />
+                <span asp-validation-for="HrEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input placeholder="Password" style="background-color:#ebebeb;border:none;border-bottom:2px solid black" type="password" asp-for="HrPassword" class="form-control" />
+                <span asp-validation-for="HrPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select style="background-color: #ebebeb; border: none; border-bottom: 2px solid black" asp-for="LocationId" class="form-control" asp-items="ViewBag.LocationId">
+                    <option selected disabled>Location</option>
+                </select>
+                <span asp-validation-for="LocationId" class="text-danger"></span>
+            </div>
+            <div style="display:flex;justify-content:center" class="form-group">
+                <input  type="submit" value="Create" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js" type="text/javascript"></script>

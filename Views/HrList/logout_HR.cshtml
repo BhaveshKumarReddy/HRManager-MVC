@@ -1,0 +1,30 @@
+﻿@model HRM_Project.Models.HrList
+
+@{
+    ViewData["Title"] = "logout_HR";
+}
+
+<div>
+    <a style="color:#ededed" asp-controller="Home" asp-action="Index">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="confirmLogout_HR">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h3 style="color:#ededed">Are you sure you want to log out?</h3>
+            <div class="form-group">
+                <input style="color:#ededed" type="submit" value="Logout" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

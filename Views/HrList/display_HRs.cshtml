@@ -1,0 +1,63 @@
+﻿@model IEnumerable<HRM_Project.Models.HrList>
+@{
+    ViewData["Title"] = "display_HRs";
+    //@using Microsoft.AspNetCore.Http
+    //@inject IHttpContextAccessor HttpContextAccessor
+    //var sess = HttpContextAccessor.HttpContext.Session.GetString("Hi");
+}
+
+<div>
+    <a asp-controller="Home" asp-action="Index">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+</div>
+<hr />
+
+<h1>display_HRs</h1>
+
+<p>
+    <a asp-action="create_HR">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HrName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HrEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HrPassword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HrName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HrEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HrPassword)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.HrId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.HrId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.HrId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

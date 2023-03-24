@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HRM_Project</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .nav-box {
+            background-image: linear-gradient(to right bottom, #051937, #0f2241, #192b4a, #233554, #2c3f5e);
+        }
+        body {
+            background-image: radial-gradient(circle, #051937, #192945, #2b3a53, #3e4c61, #515e70);
+            background-image: linear-gradient(to right bottom, #051937, #192945, #2b3a53, #3e4c61, #515e70);
+        }
+        .footer-box {
+            background-image: linear-gradient(to right bottom, #051937, #0f2241, #192b4a, #233554, #2c3f5e);
+        }
+        .con-main{
+        }
+
+        .hoverEffecttt:hover {
+            background-color: black;
+            border-bottom: solid;
+        }
+
+        .footerCustom {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 nav-box" style="background-color: #fefefe ">
+            <div class="container" style="width:60%;margin-left:3%">
+                <h2 style="color: white; border-bottom: solid">HR<span style="font-size: 18px; color: #e6e6e6">Manager<i class="fas fa-dragon"></i></span></h2>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul style="justify-content:space-evenly" class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #e6e6e6; font-weight: bold; font-size: 15px" asp-area="" asp-controller="Home" asp-action="Index">
+                            <i style="font-size:21px" class="fa fa-home"></i>
+                            Home
+                        </a>
+                    </li>
+                    @if (ViewBag.Login == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #e6e6e6; font-weight: bold; font-size: 15px " asp-area="" asp-controller="HrList" asp-action="login_HR">
+                                <i style="font-size:21px" class="fa fa-user"></i>
+                                Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #e6e6e6; font-weight: bold; font-size: 15px " asp-area="" asp-controller="HrList" asp-action="create_HR">
+                                <i class='fas fa-external-link-alt' style='font-size:21px'></i>
+                                Register
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: red; font-weight: bold; font-size: 15px " asp-area="" asp-controller="HrList" asp-action="logout_HR">
+                                <i class='fas fa-reply-all' style='font-size:21px;color:red'></i>
+                                Logout
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container con-main">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted footer-box" style="background-color: #ebebeb">
+        <div class="container">
+            <h4 class="nav-link" style="font-size:18px;color:#f2f2f2;margin-top:4px;margin-right:15px">&copy; abc<span style="font-size:21px;color:#ededed">T</span>ech</h4>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
